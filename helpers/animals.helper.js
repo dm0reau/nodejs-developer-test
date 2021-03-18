@@ -1,4 +1,4 @@
-function filterAnimalsWhereNameContains(animals, animalsNameFilter) {
+function getAnimalsWhereNameContains(animals, animalsNameFilter) {
   const lowerCaseAnimalsNameFilter = animalsNameFilter.toLowerCase();
 
   return animals.filter((animal) => {
@@ -12,5 +12,5 @@ function filterAnimalsWhereNameContains(animals, animalsNameFilter) {
 }
 
 module.exports = {
-  filterAnimalsWhereNameContains,
+  getAnimalsWhereNameContains,
 };

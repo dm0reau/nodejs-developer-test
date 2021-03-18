@@ -1,6 +1,6 @@
-const { filterAnimalsWhereNameContains } = require('./animals.helper');
+const { getAnimalsWhereNameContains } = require('./animals.helper');
 
-describe('filterAnimalsWhereNameContains', () => {
+describe('getAnimalsWhereNameContains', () => {
   const animalsMock = [
     { name: 'Anoa' },
     { name: 'Badger' },
@@ -11,7 +11,7 @@ describe('filterAnimalsWhereNameContains', () => {
 
   it('should get 1 animal with "Ano" name filter', () => {
     const nameFilter = 'Ano';
-    const filteredAnimals = filterAnimalsWhereNameContains(
+    const filteredAnimals = getAnimalsWhereNameContains(
       animalsMock,
       nameFilter
     );
@@ -23,7 +23,7 @@ describe('filterAnimalsWhereNameContains', () => {
 
   it('should get 2 animals with "co" name filter', () => {
     const nameFilter = 'co';
-    const filteredAnimals = filterAnimalsWhereNameContains(
+    const filteredAnimals = getAnimalsWhereNameContains(
       animalsMock,
       nameFilter
     );

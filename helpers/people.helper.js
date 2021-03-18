@@ -1,13 +1,10 @@
-const { filterAnimalsWhereNameContains } = require('./animals.helper');
+const { getAnimalsWhereNameContains } = require('./animals.helper');
 
 function getPeopleWithAnimalsWhereNameContains(people, animalsNameFilter) {
   return people
     .map((person) => ({
       name: person.name,
-      animals: filterAnimalsWhereNameContains(
-        person.animals,
-        animalsNameFilter
-      ),
+      animals: getAnimalsWhereNameContains(person.animals, animalsNameFilter),
     }))
     .filter((person) => {
       if (person.animals.length === 0) {
