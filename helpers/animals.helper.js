@@ -1,6 +1,10 @@
 function filterAnimalsWhereNameContains(animals, animalsNameFilter) {
+  const lowerCaseAnimalsNameFilter = animalsNameFilter.toLowerCase();
+
   return animals.filter((animal) => {
-    if (animal.name.includes(animalsNameFilter)) {
+    const lowerCaseAnimalName = animal.name.toLowerCase();
+
+    if (lowerCaseAnimalName.includes(lowerCaseAnimalsNameFilter)) {
       return true;
     }
     return false;

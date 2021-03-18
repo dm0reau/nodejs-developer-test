@@ -41,6 +41,5 @@ function filterCountriesWhichHasAnimals(countries) {
 module.exports = {
   getCountriesWithAnimalsNameContaining,
   getPeopleWithAnimalsWhereNameContains,
-  filterAnimalsWhereNameContains,
   filterCountriesWhichHasAnimals,
 };

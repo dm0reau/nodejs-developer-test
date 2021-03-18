@@ -31,7 +31,7 @@ describe('filterAnimalsWhereNameContains', () => {
     const commonGenet = filteredAnimals[1];
 
     expect(filteredAnimals.length).toBe(2);
-    expect(cobra).toBe('Cobra');
-    expect(commonGenet).toBe('Common Genet');
+    expect(cobra.name).toBe('Cobra');
+    expect(commonGenet.name).toBe('Common Genet');
   });
 });
