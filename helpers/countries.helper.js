@@ -1,4 +1,5 @@
 const { data: countries } = require('../data');
+const { filterAnimalsWhereNameContains } = require('./animals.helper');
 
 function getCountriesWithAnimalsNameContaining(animalsNameFilter) {
   if (typeof animalsNameFilter !== 'string') {
@@ -23,15 +24,6 @@ function getPeopleWithAnimalsWhereNameContains(people, animalsNameFilter) {
     name: person.name,
     animals: filterAnimalsWhereNameContains(person.animals, animalsNameFilter),
   }));
-}
-
-function filterAnimalsWhereNameContains(animals, animalsNameFilter) {
-  return animals.filter((animal) => {
-    if (animal.name.includes(animalsNameFilter)) {
-      return true;
-    }
-    return false;
-  });
 }
 
 function filterCountriesWhichHasAnimals(countries) {
