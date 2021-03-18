@@ -9,23 +9,23 @@ function getCountriesWithAnimalsNameContaining(animalsNameFilter) {
 
   const countriesWithFilteredAnimals = countries.map((country) => ({
     name: country.name,
-    people: getPeopleWithFilteredAnimals(country.people, animalsNameFilter),
+    people: getPeopleWithAnimalsWhereNameContains(
+      country.people,
+      animalsNameFilter
+    ),
   }));
 
   return filterCountriesWhichHasAnimals(countriesWithFilteredAnimals);
 }
 
-function getPeopleWithFilteredAnimals(people, animalsNameFilter) {
+function getPeopleWithAnimalsWhereNameContains(people, animalsNameFilter) {
   return people.map((person) => ({
     name: person.name,
-    animals: filterAnimalsWhereNameContaining(
-      person.animals,
-      animalsNameFilter
-    ),
+    animals: filterAnimalsWhereNameContains(person.animals, animalsNameFilter),
   }));
 }
 
-function filterAnimalsWhereNameContaining(animals, animalsNameFilter) {
+function filterAnimalsWhereNameContains(animals, animalsNameFilter) {
   return animals.filter((animal) => {
     if (animal.name.includes(animalsNameFilter)) {
       return true;
@@ -48,7 +48,7 @@ function filterCountriesWhichHasAnimals(countries) {
 
 module.exports = {
   getCountriesWithAnimalsNameContaining,
-  getPeopleWithFilteredAnimals,
-  filterAnimalsWhereNameContaining,
+  getPeopleWithAnimalsWhereNameContains,
+  filterAnimalsWhereNameContains,
   filterCountriesWhichHasAnimals,
 };
