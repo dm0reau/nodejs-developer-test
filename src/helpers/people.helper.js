@@ -14,6 +14,14 @@ function getPeopleWithAnimalsWhereNameContains(people, animalsNameFilter) {
     });
 }
 
+function getPeopleWithAnimalsCountInName(people) {
+  return people.map((person) => ({
+    name: `${person.name} [${person.animals.length}]`,
+    animals: person.animals,
+  }));
+}
+
 module.exports = {
   getPeopleWithAnimalsWhereNameContains,
+  getPeopleWithAnimalsCountInName,
 };

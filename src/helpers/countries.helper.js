@@ -24,6 +24,14 @@ function getCountriesWithAnimalsWhereNameContains(animalsNameFilter) {
     });
 }
 
+function getCountriesWithPeopleCountInName() {
+  return countries.map((country) => ({
+    name: `${country.name} [${country.people.length}]`,
+    people: country.people,
+  }));
+}
+
 module.exports = {
   getCountriesWithAnimalsWhereNameContains,
+  getCountriesWithPeopleCountInName,
 };
