@@ -1,5 +1,8 @@
 const { data: countries } = require('../data');
-const { getPeopleWithAnimalsWhereNameContains } = require('./people.helper');
+const {
+  getPeopleWithAnimalsWhereNameContains,
+  getPeopleWithAnimalsCountInName,
+} = require('./people.helper');
 
 function getCountriesWithAnimalsWhereNameContains(animalsNameFilter) {
   if (typeof animalsNameFilter !== 'string') {
@@ -24,14 +27,14 @@ function getCountriesWithAnimalsWhereNameContains(animalsNameFilter) {
     });
 }
 
-function getCountriesWithPeopleCountInName() {
+function getCountriesWithPeopleAndAnimalsCountInName() {
   return countries.map((country) => ({
     name: `${country.name} [${country.people.length}]`,
-    people: country.people,
+    people: getPeopleWithAnimalsCountInName(country.people),
   }));
 }
 
 module.exports = {
   getCountriesWithAnimalsWhereNameContains,
-  getCountriesWithPeopleCountInName,
+  getCountriesWithPeopleAndAnimalsCountInName,
 };

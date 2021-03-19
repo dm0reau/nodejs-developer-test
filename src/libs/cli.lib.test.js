@@ -21,6 +21,14 @@ describe('CLI lib', () => {
     expect(result.length).toBeGreaterThan(1);
   });
 
+  it('should give result with count arg', () => {
+    const countArgvMock = ['node', 'app.js', '--count'];
+    const cli = new CLI(countArgvMock);
+    const result = cli.getJSONResultForCountArg();
+    expect(result).toBeInstanceOf(Array);
+    expect(result.length).toBeGreaterThan(1);
+  });
+
   it('should give passed arguments', () => {
     const cli = new CLI(argvMock);
     const passedArg = cli.getPassedArg();

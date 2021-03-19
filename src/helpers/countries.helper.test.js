@@ -1,7 +1,7 @@
 const { describe, it, expect } = require('@jest/globals');
 const {
   getCountriesWithAnimalsWhereNameContains,
-  getCountriesWithPeopleCountInName,
+  getCountriesWithPeopleAndAnimalsCountInName,
 } = require('./countries.helper');
 
 describe('getCountriesWithAnimalsWhereNameContains', () => {
@@ -63,8 +63,15 @@ describe('getCountriesWithAnimalsWhereNameContains', () => {
 
 describe('getCountriesWithPeopleCountInName', () => {
   it("should give people count in each country's name", () => {
-    const countries = getCountriesWithPeopleCountInName();
+    const countries = getCountriesWithPeopleAndAnimalsCountInName();
     const firstCountry = countries[0];
-    expect(firstCountry.name).toBe(`Dillauti [5]`);
+    expect(firstCountry.name).toBe('Dillauti [5]');
+  });
+
+  it("should give animals count for each people's name", () => {
+    const countries = getCountriesWithPeopleAndAnimalsCountInName();
+    const firstCountry = countries[0];
+    const firstPerson = firstCountry.people[0];
+    expect(firstPerson.name).toBe('Winifred Graham [6]');
   });
 });

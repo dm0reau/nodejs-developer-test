@@ -1,5 +1,6 @@
 const {
   getCountriesWithAnimalsWhereNameContains,
+  getCountriesWithPeopleAndAnimalsCountInName,
 } = require('../helpers/countries.helper');
 
 const allowedArgNames = ['--filter', '--count'];
@@ -19,12 +20,18 @@ class CLI {
     let result = [];
     if (appArg.name === '--filter') {
       result = this.getJSONResultForFilterArg(appArg.value);
+    } else if (appArg.name === '--count') {
+      result = this.getJSONResultForCountArg();
     }
     return result;
   }
 
   getJSONResultForFilterArg(filterArgValue) {
     return getCountriesWithAnimalsWhereNameContains(filterArgValue);
+  }
+
+  getJSONResultForCountArg() {
+    return getCountriesWithPeopleAndAnimalsCountInName();
   }
 
   getAppArg() {
