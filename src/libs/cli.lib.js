@@ -14,12 +14,16 @@ class CLI {
     this._argv = argv;
   }
 
-  exec() {
+  getJSONResult() {
     const appArg = this.getAppArg();
-    console.log(`Exec with args : ${appArg}`);
+    let result = [];
+    if (appArg.name === '--filter') {
+      result = this.getJSONResultForFilterArg(appArg.value);
+    }
+    return result;
   }
 
-  getResultForFilterArg(filterArgValue) {
+  getJSONResultForFilterArg(filterArgValue) {
     return getCountriesWithAnimalsWhereNameContains(filterArgValue);
   }
 

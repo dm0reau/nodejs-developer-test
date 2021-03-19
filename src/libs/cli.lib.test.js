@@ -16,7 +16,7 @@ describe('CLI lib', () => {
   it('should give result with filter arg', () => {
     const filterArgvMock = ['node', 'app.js', '--filter=co'];
     const cli = new CLI(filterArgvMock);
-    const result = cli.getResultForFilterArg('co');
+    const result = cli.getJSONResultForFilterArg('co');
     expect(result).toBeInstanceOf(Array);
     expect(result.length).toBeGreaterThan(1);
   });
@@ -30,7 +30,7 @@ describe('CLI lib', () => {
   it('should throw without args', () => {
     const withoutArgsMock = ['node', 'app.js'];
     const cli = new CLI(withoutArgsMock);
-    expect(() => cli.exec()).toThrow(
+    expect(() => cli.getJSONResult()).toThrow(
       'App must have at least one option as argument'
     );
   });
@@ -38,6 +38,8 @@ describe('CLI lib', () => {
   it('should check allowed args', () => {
     const disallowedArgvMock = ['node', 'app.js', '--foo=bar'];
     const cli = new CLI(disallowedArgvMock);
-    expect(() => cli.exec()).toThrow('--foo is disallowed. Allowed args:');
+    expect(() => cli.getJSONResult()).toThrow(
+      '--foo is disallowed. Allowed args:'
+    );
   });
 });
