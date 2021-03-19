@@ -1,32 +1,44 @@
+const {
+  getCountriesWithAnimalsWhereNameContains,
+} = require('../helpers/countries.helper');
+
 const allowedArgNames = ['--filter', '--count'];
 
 class CLI {
-  _appArgs = [];
+  _appArg = {
+    name: null,
+    value: null,
+  };
 
   constructor(argv) {
     this._argv = argv;
   }
 
   exec() {
-    console.log(`Exec with args : ${this.getAppArgs()}`);
+    const appArg = this.getAppArg();
+    console.log(`Exec with args : ${appArg}`);
   }
 
-  getAppArgs() {
-    this._parseAppArgs();
-    return this._appArgs;
+  getResultForFilterArg(filterArgValue) {
+    return getCountriesWithAnimalsWhereNameContains(filterArgValue);
   }
 
-  getPassedArgs() {
-    return this._argv.slice(2, this._argv.length);
+  getAppArg() {
+    this._parseAppArg();
+    return this._appArg;
   }
 
-  _parseAppArgs() {
+  getPassedArg() {
+    return this._argv.slice(2, 3)[0];
+  }
+
+  _parseAppArg() {
     if (this._argv.length <= 2) {
       throw new Error('App must have at least one option as argument');
     }
-    const passedArgs = this.getPassedArgs();
-    this._appArgs = passedArgs.map(this._parsePassedArgToAppArg);
-    this._checkAppArgs();
+    const passedArg = this.getPassedArg();
+    this._appArg = this._parsePassedArgToAppArg(passedArg);
+    this._checkAppArg();
   }
 
   _parsePassedArgToAppArg(passedArg) {
@@ -37,14 +49,12 @@ class CLI {
     };
   }
 
-  _checkAppArgs() {
-    this._appArgs.forEach((appArg) => {
-      if (!allowedArgNames.includes(appArg.name)) {
-        throw new Error(
-          `${appArg.name} is disallowed. Allowed args: ${allowedArgNames}`
-        );
-      }
-    });
+  _checkAppArg() {
+    if (!allowedArgNames.includes(this._appArg.name)) {
+      throw new Error(
+        `${this._appArg.name} is disallowed. Allowed args: ${allowedArgNames}`
+      );
+    }
   }
 }
 
